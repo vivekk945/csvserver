@@ -4,5 +4,15 @@ services:
      image: infracloudio/csvserver
      ports:
       - "9393:9300"
+     container_name: application
+     environment:
+         CSVSERVER_BORDER: Orange
      volumes:
        - "/home/ubuntu/inputFile:/csvserver/inputdata:rw"
+   prom:
+     image: prom/prometheus:v2.22.0
+     ports:
+      - "9090:9090"
+     container_name: prometheus
+     volumes:
+       - "/home/ubuntu/prometheus.yml:/etc/prometheus/prometheus.yml:rw"
